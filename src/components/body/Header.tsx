@@ -7,24 +7,24 @@ export default function Header() {
     
   return (
     <header>
-      <div className="flex flex-row justify-between items-center container mx-auto bg-white rounded-bl-2xl rounded-br-2xl h-44">
+      <div className="flex flex-row justify-around items-center container mx-auto bg-white rounded-bl-2xl rounded-br-2xl h-44">
         <div>
         <Image
-        src="/favicon.png"
+        src="/Logo.png"
         alt="Picture of the author"
         width={150}
         height={150}
             />
         </div>
-        <div className="w-80 flex flex-row justify-between items-center">
-          <Button variant="text">Text</Button>
-          <Button variant="text">Text</Button>
-          <Button variant="text">Text</Button>
-          <Button variant="text">Text</Button>
+        <div className="w-3/6 flex flex-row justify-between items-center">
+          <Button variant="text">Inicio</Button>
+          <Button variant="text" className="pink">Meninas</Button>
+          <Button variant="text">Meninos</Button>
+          <Button variant="text" className="pink">Acessórios</Button>
         </div>
         <div>
-          <Button variant="text" color="secondary">Login</Button>
-          <Button variant="text" color="secondary">Cadastro</Button>
+          <Button variant="text" className="pink">Login</Button>
+          <Button variant="text" className="pink">Cadastro</Button>
         </div>
       </div>
     </header>
