@@ -31,8 +31,7 @@ export default function Home() {
       <main className={styles.main}>
         <Navbar />
         <Body />
-        <Footer />
-        
+        <Footer /> 
       </main>
     </>
   );
