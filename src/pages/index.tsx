@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import Header from "@/components/body/Header";
+import Navbar from "@/components/body/Navbar";
 import Body from "@/components/body/Body";
 import Footer from "@/components/body/Footer";
 
@@ -29,9 +29,10 @@ export default function Home() {
         />
       </Head>
       <main className={styles.main}>
-        <Header />
+        <Navbar />
         <Body />
         <Footer />
+        
       </main>
     </>
   );
