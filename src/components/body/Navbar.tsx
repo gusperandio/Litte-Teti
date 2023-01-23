@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import { Button } from "@mui/material";
-import styles from "../../styles/Header.module.css";
+import styles from "../../styles/Navbar.module.css";
 import Image from "next/image";
 
 export default function Navbar() {
