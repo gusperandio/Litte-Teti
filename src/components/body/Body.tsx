@@ -10,7 +10,7 @@ export default function Body() {
       <br />
       <br />
       <div className="flex justify-end">
-        <div className="mr-52 bg-slate-100 w-32 flex justify-around rounded-lg opacity-90">
+        <div className="mr-16 sm:mr-44 bg-slate-100 w-32 flex justify-around rounded-lg opacity-90">
           <IconButton color="primary" size="large">
             <input hidden accept="image/*" type="file" />
             <SearchRoundedIcon />

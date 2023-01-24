@@ -2,6 +2,7 @@ import styles from "../../styles/Footer.module.css";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { LogoWhatsapp } from "react-ionicons";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -32,8 +33,17 @@ export default function Footer() {
               </a>
             </Link>
             <div className={styles.Instabtn}>
-              <div className="flex justify-center mt-4 ">
-                <Button variant="outlined">Instagram</Button>
+              <div className="flex justify-center mt-4 ml-8 ">
+                <Link
+                  href="https://www.instagram.com/little_teti/"
+                  legacyBehavior
+                >
+                  <a target="_blank">
+                    <Button variant="outlined" color="error">
+                      Instagram
+                    </Button>
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -52,11 +62,18 @@ export default function Footer() {
 
           <div className="flex justify-center  font-semibold text-center">
             <ul>
-              <li className="pt-10">
-                Whats App
-              </li>
-              <li className="pt-10 flex flex-row items-center">
-               +55 18 98111-1111
+              <li className="pt-10">Whats App</li>
+              <li className="pt-10 flex flex-col items-center text-sm">
+                Development by
+                <br />
+                <Image
+                  src="/hb-logo.png"
+                  alt="Picture of the author"
+                  width={60}
+                  height={60}
+                  priority
+                ></Image>
+                <h4 className="font-bold text-yellow-500">HONEY BEE</h4>
               </li>
             </ul>
           </div>

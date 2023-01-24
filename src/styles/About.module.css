@@ -3,4 +3,9 @@
     width: 85%;
     background-color: #fff;
     border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
 }

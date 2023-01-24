@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import Navbar from "@/components/body/Navbar";
 import Body from "@/components/body/Body";
 import Footer from "@/components/body/Footer";
+import { Button } from "@mui/material";
 
 export default function Home() {
   return (

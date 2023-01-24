@@ -2,8 +2,17 @@
 import { Button } from "@mui/material";
 import styles from "../../styles/Navbar.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Navbar() {
+interface PropsNavbar{
+  exibe1?: boolean
+  exibe2?: boolean
+  exibe3?: boolean
+  exibe4?: boolean
+  exibe5?: boolean
+}
+
+export default function Navbar(props: PropsNavbar) {
   return (
     <header className={styles.menu}>
       <div className="flex flex-row justify-around items-center container mx-auto bg-white rounded-bl-2xl rounded-br-2xl h-44">
@@ -17,7 +26,9 @@ export default function Navbar() {
           />
         </div>
         <div className="w-3/6 flex flex-row justify-start items-center">
-          <Button variant="text">Inicio</Button>
+          <Button variant="text" href="/">
+            Inicio
+          </Button>
           <Button variant="text" className="pink">
             Meninas
           </Button>
@@ -27,10 +38,10 @@ export default function Navbar() {
           </Button>
         </div>
         <div>
-          <Button variant="text" className="pink">
+          <Button variant="contained" href="/login">
             Login
           </Button>
-          <Button variant="text" className="pink">
+          <Button variant="text" className="pink" href="/login">
             Cadastro
           </Button>
         </div>
