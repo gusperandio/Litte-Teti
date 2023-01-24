@@ -63,7 +63,7 @@ export default function Footer() {
           <div className="flex justify-center  font-semibold text-center">
             <ul>
               <li className="pt-10">Whats App</li>
-              <li className="pt-10 flex flex-col items-center text-sm">
+              <li className="pt-10 flex flex-col items-center text-sm font-bold">
                 Development by
                 <br />
                 <Image
@@ -73,7 +73,7 @@ export default function Footer() {
                   height={60}
                   priority
                 ></Image>
-                <h4 className="font-bold text-yellow-500">HONEY BEE</h4>
+                <h4 className="text-yellow-500">HONEY BEE</h4>
               </li>
             </ul>
           </div>

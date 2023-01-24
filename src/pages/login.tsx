@@ -14,6 +14,7 @@ import Navbar from "@/components/body/Navbar";
 import LoginTwoToneIcon from "@mui/icons-material/LoginTwoTone";
 import Image from "next/image";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import ButtonGoogle from "@/components/util/ButtonGoogle";
 
 const logo = (): string => {
   switch (parseInt((Math.random() * (4 - 1) + 1).toString(), 10)) {
@@ -83,12 +84,12 @@ export default function Login() {
           sx={{ m: 1, width: "20ch" }}
           style={{ color: "#fff", border: "1px solid #fff" }}
         >
-          Retornar
+          Voltar
         </Button>
       </div>
       <div className={styles.divP}>
         <div className="w-9/12 sm:w-5/12 h-3/4 bg-slate-50 rounded-2xl flex justify-start flex-col">
-          <div className="flex justify-center items-center flex-col mt-16">
+          <div className="flex justify-center items-center flex-col mt-4">
             <Image
               src={viewLogo.toString()}
               width={150}
@@ -128,6 +129,9 @@ export default function Login() {
               />
             </FormControl>
             <br />
+            <div>
+            <ButtonGoogle />
+            </div>
             <br />
             <div>
               <Button
@@ -139,6 +143,7 @@ export default function Login() {
                 Login
               </Button>
             </div>
+            <br />
           </div>
         </div>
       </div>
