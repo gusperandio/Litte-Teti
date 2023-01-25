@@ -10,11 +10,12 @@ import * as React from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
-import Navbar from "@/components/body/Navbar";
 import LoginTwoToneIcon from "@mui/icons-material/LoginTwoTone";
 import Image from "next/image";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ButtonGoogle from "@/components/util/ButtonGoogle";
+import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
+import HeadAuth from "@/components/body/HeadAuth";
 
 const logo = (): string => {
   switch (parseInt((Math.random() * (4 - 1) + 1).toString(), 10)) {
@@ -42,11 +43,11 @@ export default function Login() {
     event.preventDefault();
   };
 
-  const [viewLogo, setLogo] = React.useState("");
-
-   React.useEffect(() => {
-     setLogo(logo());
-   }, []);
+  const [viewLogo, setLogo] = React.useState(logo());
+  //  React.useEffect(() => {
+  //    if(!!viewLogo.length) return
+  //    setLogo(logo())
+  //  }, []);
 
   // function User({ name }) {
   //   React.useEffect(() => {
@@ -58,24 +59,7 @@ export default function Login() {
 
   return (
     <>
-      <Head>
-        <title>Little Teti - Login</title>
-        <link rel="icon" href="/favicon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="use-credentials"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        />
-      </Head>
+      <HeadAuth title="Little Teti - Login"/>
       <div className="mt-8 ml-4">
         <Button
           variant="outlined"
@@ -88,63 +72,82 @@ export default function Login() {
         </Button>
       </div>
       <div className={styles.divP}>
-        <div className="w-9/12 sm:w-5/12 h-3/4 bg-slate-50 rounded-2xl flex justify-start flex-col">
-          <div className="flex justify-center items-center flex-col mt-4">
-            <Image
-              src={viewLogo.toString()}
-              width={150}
-              height={150}
-              alt="Página de login"
-            ></Image>
-            <TextField
-              id="outlined-basic"
-              label="E-mail"
-              variant="outlined"
-              placeholder="exemplo@email.com"
-              sx={{ m: 1, width: "25ch" }}
-              className="mt-4"
-            />
-            <br />
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Senha
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Senha"
-                placeholder="**********"
-              />
-            </FormControl>
-            <br />
-            <div>
-            <ButtonGoogle />
-            </div>
-            <br />
-            <div>
-              <Button
-                variant="contained"
-                href="/login"
-                endIcon={<LoginTwoToneIcon />}
+        <div className="w-9/12 h-10/12 sm:w-5/12 sm:h-3/4 bg-slate-50 rounded-2xl flex justify-start flex-col animate__animated animate__zoomIn">
+          <div className="flex justify-center items-center flex-col">
+            <div
+              style={{ width: "17rem" }}
+              className="flex items-center flex-col mt-4"
+            >
+              <Image
+                src={viewLogo.toString()}
+                width={150}
+                height={150}
+                alt="Página de login"
+              ></Image>
+              <TextField
+                id="outlined-basic"
+                label="E-mail"
+                variant="outlined"
+                placeholder="exemplo@email.com"
                 sx={{ m: 1, width: "25ch" }}
-              >
-                Login
-              </Button>
+                className="mt-4"
+              />
+              <br />
+              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Senha
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Senha"
+                  placeholder="**********"
+                />
+              </FormControl>
+              <br />
+              <div>
+                <ButtonGoogle />
+              </div>
+              <div className="text-right w-full text-gray-800 underline text-lg mt-8 sm:mr-4 mr-8">
+                Esqueci a senha
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  href="/login"
+                  endIcon={<LoginTwoToneIcon />}
+                  sx={{ m: 1, width: "28ch" }}
+                >
+                  ENTRAR
+                </Button>
+              </div>
+              <br />
             </div>
-            <br />
           </div>
+        </div>
+        <br/>
+        <div>
+          <Button
+            variant="contained"
+            href="/login"
+            startIcon={<HowToRegRoundedIcon />}
+            sx={{ m: 1, width: "28ch" }}
+            color="warning"
+          >
+            Cadastre-se
+          </Button>
         </div>
       </div>
     </>

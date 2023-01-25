@@ -1,5 +1,13 @@
+.menuMobile{
+    display: none;
+}
+
 @media (max-width: 768px) {
     .menu{
         display: none;
+    }
+
+    .menuMobile{
+        display: block;
     }
 }
