@@ -56,7 +56,7 @@ export default function Navbar(props: PropsNavbar) {
             <Button variant="contained" href="/login">
               Login
             </Button>
-            <Button variant="text" className="pink" href="/login">
+            <Button variant="text" className="pink" href="/register">
               Cadastro
             </Button>
           </div>

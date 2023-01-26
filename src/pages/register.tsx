@@ -17,23 +17,7 @@ import ButtonGoogle from "@/components/util/ButtonGoogle";
 import HowToRegRoundedIcon from '@mui/icons-material/HowToRegRounded';
 import HeadAuth from "@/components/body/HeadAuth";
 
-const logo = (): string => {
-  switch (parseInt((Math.random() * (4 - 1) + 1).toString(), 10)) {
-    case 1:
-      return "/logo2.png";
-
-    case 2:
-      return "/logo3.png";
-
-    case 3:
-      return "/logo4.png";
-
-    default:
-      return "/logo2.png";
-  }
-};
-
-export default function Login() {
+export default function Cadastro() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -42,20 +26,6 @@ export default function Login() {
   ) => {
     event.preventDefault();
   };
-
-  const [viewLogo, setLogo] = React.useState(logo());
-  //  React.useEffect(() => {
-  //    if(!!viewLogo.length) return
-  //    setLogo(logo())
-  //  }, []);
-
-  // function User({ name }) {
-  //   React.useEffect(() => {
-  //     document.title = name;
-  //   }, [name]);
-
-  //   return <h1>{name}</h1>;
-  // }
 
   return (
     <>
@@ -76,14 +46,16 @@ export default function Login() {
           <div className="flex justify-center items-center flex-col">
             <div
               style={{ width: "17rem" }}
-              className="flex items-center flex-col mt-4"
+              className="flex items-center flex-col mt-8"
             >
-              <Image
-                src={viewLogo.toString()}
-                width={150}
-                height={150}
-                alt="Página de login"
-              ></Image>
+                <TextField
+                id="outlined-basic"
+                label="Nome"
+                variant="outlined"
+                placeholder="Ex: Maria"
+                sx={{ m: 1, width: "25ch" }}
+                className="mt-4"
+              />
               <TextField
                 id="outlined-basic"
                 label="E-mail"
@@ -92,7 +64,6 @@ export default function Login() {
                 sx={{ m: 1, width: "25ch" }}
                 className="mt-4"
               />
-              <br />
               <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
                   Senha
@@ -116,13 +87,21 @@ export default function Login() {
                   placeholder="**********"
                 />
               </FormControl>
+              <TextField
+                id="outlined-basic"
+                label="Confirmar senha"
+                variant="outlined"
+                type="password"
+                placeholder="**********"
+                sx={{ m: 1, width: "25ch" }}
+                className="mt-4"
+              />
               <br />
               <div>
                 <ButtonGoogle />
               </div>
-              <div className="text-right w-full text-gray-800 underline text-lg mt-8 sm:mr-4 mr-8">
-                Esqueci a senha
-              </div>
+              <br />
+              <br />
               <div>
                 <Button
                   variant="contained"
@@ -130,7 +109,7 @@ export default function Login() {
                   endIcon={<LoginTwoToneIcon />}
                   sx={{ m: 1, width: "28ch" }}
                 >
-                  ENTRAR
+                  Cadastrar
                 </Button>
               </div>
               <br />
@@ -138,17 +117,6 @@ export default function Login() {
           </div>
         </div>
         <br/>
-        <div>
-          <Button
-            variant="contained"
-            href="/login"
-            startIcon={<HowToRegRoundedIcon />}
-            sx={{ m: 1, width: "28ch" }}
-            color="warning"
-          >
-            Cadastre-se
-          </Button>
-        </div>
       </div>
     </>
   );

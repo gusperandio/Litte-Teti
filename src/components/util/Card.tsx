@@ -1,18 +1,17 @@
 import styles from "../../styles/Card.module.css";
 import Image from "next/image";
 import { IconButton } from "@mui/material";
-import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
-import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
+import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
+import Link from "next/link";
 
-interface CardProps{
-  titulo: string
-  image?: string
-  cores?: string[]
-
+interface CardProps {
+  titulo: string;
+  image?: string;
+  cores?: string[];
 }
 
 export default function Card(props: CardProps) {
-
   return (
     <div className="flex justify-between flex-wrap mx-2 lg:mx-12">
       <div className={styles.card}>
@@ -34,12 +33,14 @@ export default function Card(props: CardProps) {
             R$ 40.<small>90</small>
           </h4>
         </div>
-        <hr className="mx-4"/>
+        <hr className="mx-4" />
         <div>
-          <IconButton color="primary" size="large">
-            <input hidden accept="image/*" type="file" />
-            <LocalOfferRoundedIcon />
-          </IconButton>
+          <Link href="/produto">
+            <IconButton color="primary" size="large">
+              <input hidden accept="image/*" type="file" />
+              <LocalOfferRoundedIcon />
+            </IconButton>
+          </Link>
           <IconButton color="primary" size="large">
             <input hidden accept="image/*" type="file" />
             <AddShoppingCartRoundedIcon />

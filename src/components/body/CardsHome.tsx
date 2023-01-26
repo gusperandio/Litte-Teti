@@ -25,7 +25,7 @@ export default function CardsHome() {
         </div>
       </div>
       <br />
-      <h1 className="text-white font-bold text-2xl ml-4 sm:ml-20 pl-3  border-l-4">Ultimos Lançamentos</h1>
+      <h1 className="text-white font-bold text-2xl ml-8 sm:ml-24 pl-3 border-l-4">Ultimos Lançamentos</h1>
       <br />
       <div className="flex justify-center flex-wrap">
         <Card titulo="Roupa Infantil" />
