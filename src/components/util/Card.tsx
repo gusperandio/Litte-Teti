@@ -35,7 +35,7 @@ export default function Card(props: CardProps) {
         </div>
         <hr className="mx-4" />
         <div>
-          <Link href="/produto">
+          <Link href="/product">
             <IconButton color="primary" size="large">
               <input hidden accept="image/*" type="file" />
               <LocalOfferRoundedIcon />

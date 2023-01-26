@@ -48,15 +48,15 @@ export default function Navbar(props: PropsNavbar) {
             <Button variant="text" href="/boys">
               Meninos
             </Button>
-            <Button variant="text" className="pink">
+            <Button variant="text" className="pink" href="/accessories">
               Acessórios
             </Button>
           </div>
           <div>
-            <Button variant="contained" href="/login">
+            <Button variant="text" className="pink" href="/login">
               Login
             </Button>
-            <Button variant="text" className="pink" href="/register">
+            <Button variant="contained" className="ml-4" href="/register">
               Cadastro
             </Button>
           </div>

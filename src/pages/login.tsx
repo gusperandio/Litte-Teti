@@ -141,7 +141,7 @@ export default function Login() {
         <div>
           <Button
             variant="contained"
-            href="/login"
+            href="/register"
             startIcon={<HowToRegRoundedIcon />}
             sx={{ m: 1, width: "28ch" }}
             color="warning"
