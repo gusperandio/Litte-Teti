@@ -7,7 +7,6 @@
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
     border-radius: 1rem;
     text-align: center;
-    cursor: pointer;
     transition: all 0.5s;
     display: flex;
     flex-direction: column;
@@ -30,7 +29,7 @@
   .card {
     box-sizing: border-box;
     width: 12rem;
-    height: 20rem;
+    height: 21rem;
     background: rgba(217, 217, 217, 0.58);
     border: 1px solid white;
     box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);

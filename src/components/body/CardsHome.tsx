@@ -30,16 +30,16 @@ export default function CardsHome() {
       </h1>
       <br />
       <div className="flex justify-center flex-wrap">
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
+        <Card titulo="Roupa Infantil" cores={['red', 'pink', 'yellow']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa2.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa3.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa1.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa2.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa3.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa1.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa2.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa3.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/roupa1.jpg"/>
       </div>
       <br />
       <br />

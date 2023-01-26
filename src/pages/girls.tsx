@@ -10,16 +10,16 @@ export default function Girls() {
       <Navbar />
       <br/>
       <div className="flex justify-center flex-wrap">
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
+      <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
+        <Card titulo="Roupa Infantil" cores={['blue', 'white', 'dodgerblue']} image="/maite.jpg"/>
       </div>
       <Footer />
     </>

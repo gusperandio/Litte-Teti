@@ -6,20 +6,60 @@ import Card from "@/components/util/Card";
 export default function Boys() {
   return (
     <>
-      <HeadAuth title="Little Teti - Meninas"/>
+      <HeadAuth title="Little Teti - Meninas" />
       <Navbar />
-      <br/>
+      <br />
       <div className="flex justify-center flex-wrap">
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
+        <Card
+          titulo="Roupa Infantil"
+          cores={["blue", "white", "dodgerblue"]}
+          image="/maite.jpg"
+        />
       </div>
       <Footer />
     </>
