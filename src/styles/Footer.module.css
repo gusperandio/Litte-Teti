@@ -68,7 +68,7 @@
 
   @media (max-width: 640px) {
     .card{
-      display: none;
+      display: none;  
     }
   
     .Instabtn{

@@ -12,11 +12,11 @@ import Image from "next/image";
 
 export default function Carrousel() {
   return (
-    <Carousel>
-      <Carousel.Item >
+    <Carousel className="rounded-l-2xl">
+      <Carousel.Item className="rounded-l-2xl">
         <Image src="/roupa2.jpg" alt="Image Two" width={500} height={500} className="rounded-l-2xl"/>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item className="rounded-l-2xl">
         <Image src="/roupa3.jpg" alt="Image Two" width={500} height={500} className="rounded-l-2xl"/>
       </Carousel.Item>
     </Carousel>
