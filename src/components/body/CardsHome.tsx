@@ -5,6 +5,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Card from "../util/Card";
 import ClearAllRoundedIcon from "@mui/icons-material/ClearAllRounded";
 export default function CardsHome() {
+ 
   return (
     <>
       <br />
