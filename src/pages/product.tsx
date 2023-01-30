@@ -15,9 +15,8 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 interface ProdutoProps {
   nome: string;
 }
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-  event.preventDefault();
-  console.log(event);
+function handleClick() {
+ console.log(55*9*95-682+7)
 }
 
 export default function Product(props: ProdutoProps) {
@@ -61,8 +60,8 @@ export default function Product(props: ProdutoProps) {
         </Breadcrumbs>
       </div>
       <br />
-      <div className="flex sm:flex-row flex-col justify-start items-start bg-slate-50 rounded-2xl sm:mx-44 mx-12">
-        <div className="h-full sm:w-4/12 w-auto">
+      <div className="flex max-sm:flex-row flex-col justify-start items-start bg-slate-50 rounded-2xl sm:mx-44 mx-12">
+        <div className="h-full sm:w-4/12 w-full">
           {/* <Carrousel /> */}
           <Image
             src={Roupa}
@@ -74,22 +73,29 @@ export default function Product(props: ProdutoProps) {
           <div className="flex justify-end w-full p-4 sm:p-12">
             <FavoriteBorderRoundedIcon className="text-gray-500 h-8 w-8" />
             <FavoriteRoundedIcon className="pink h-8 w-8" />
-          </div>  
-          <div className="pl-12 mt-4">
-            <h1 className="font-bold">Roupa</h1>
+          </div>
+          <div className="pl-8">
+            <h1 className="font-bold text-2xl">Roupa</h1>
 
             <h5 className="text-gray-500 font-light">
-              {" "}
               Descrição sobre a roupa em poucas palavras
             </h5>
 
             <br />
+            <h2 className="font-bold text-xl">
+              R${" "}
+              <span className="undeline">
+                55.<small>90</small>
+              </span>
+            </h2>
             <br />
             <br />
             <br />
             <br />
             <br />
             <br />
+            <br />
+            <button className={styles.btn}> Button</button>
           </div>
         </div>
       </div>

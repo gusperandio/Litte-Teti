@@ -14,17 +14,18 @@ interface CardProps {
 }
 
 export default function Card(props: CardProps) {
-
-
-const cor = props.cores.map((corAtual) =>
-  <span style={{ backgroundColor: corAtual.toString() }} className="w-4 h-4 rounded-full border border-gray-500"></span>
-);
+  const cor = props.cores.map((corAtual) => (
+    <span
+      style={{ backgroundColor: corAtual.toString() }}
+      className="w-4 h-4 rounded-full border border-gray-500"
+    ></span>
+  ));
 
   return (
-    <div className="flex justify-between flex-wrap mx-2 lg:mx-12">
+    <div className="flex justify-between flex-wrap mx-4 lg:mx-12">
       <div className={styles.card}>
-        <Link href="/product" className="cursor-auto">
-          <div className="w-full sm:h-44 h-36 bg-slate-50 rounded-t-2xl flex justify-center">
+        <Link href="/product" className="cursor-auto h-80">
+          <div className="h-3/5 bg-slate-50 rounded-t-2xl flex justify-center">
             <Image
               src={props.image}
               alt="Picture of the author"
@@ -34,21 +35,19 @@ const cor = props.cores.map((corAtual) =>
               priority
             />
           </div>
-          <h5 className="mt-2 sm:mt-1">{props.titulo}</h5>
-          <div className="mt-2">
-            <div className="flex justify-evenly flex-row " id="cor">
-              {cor}
-            </div>
-            <h5 className="text-left ml-2 text-gray-700 line-through mt-2">
-              R$ 40.90
-            </h5>
-            <h4 className="text-center ml-2 text-gray-700">
-              R$ 40.<small>90</small>
-            </h4>
+          <h5 className="mt-4 text-2xl">{props.titulo}</h5>
+          <div className="flex justify-evenly flex-row mt-4" id="cor">
+            {cor}
           </div>
+          <h5 className="text-left ml-4 text-gray-700 line-through mt-2">
+            R$ 62.90
+          </h5>
+          <h3 className="text-center ml-2 text-gray-700 text-2xl">
+            R$ 40.<small>90</small>
+          </h3>
         </Link>
-        <hr className="mx-4" />
-        <div>
+        <hr className="mx-8 mt-4" />
+        <div className="mt-1 flex justify-evenly">
           <Link href="/product">
             <IconButton color="primary" size="large">
               <input hidden accept="image/*" type="file" />
