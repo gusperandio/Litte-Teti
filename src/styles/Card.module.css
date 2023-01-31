@@ -47,3 +47,74 @@
   }
 }
 
+.minicard {
+  box-sizing: border-box;
+  width: 10rem;
+  height: 14rem;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  user-select: none;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}
+
+.minicard:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.minicard:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+@media(min-width: 740px){
+  .minicard {
+    box-sizing: border-box;
+    width: 12rem;
+    height: 20rem;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    user-select: none;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+    max-width: 322px;
+  }
+}
+
+@media(max-width: 400px){
+  .minicard {
+    box-sizing: border-box;
+    width: 8rem;
+    height: 12rem;
+    background: rgba(217, 217, 217, 0.58);
+    border: 1px solid white;
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    user-select: none;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+    max-width: 322px;
+  }
+}
+

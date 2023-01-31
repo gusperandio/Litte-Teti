@@ -42,7 +42,7 @@ export default function Card(props: CardProps) {
           <h5 className="text-left ml-4 text-gray-700 line-through mt-2">
             R$ 62.90
           </h5>
-          <h3 className="text-center ml-2 text-gray-700 text-2xl">
+          <h3 className="text-center mr-2 text-gray-700 text-xl">
             R$ 40.<small>90</small>
           </h3>
         </Link>

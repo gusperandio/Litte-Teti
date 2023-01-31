@@ -4,7 +4,7 @@ import Navbar from "@/components/body/Navbar";
 import Card from "@/components/util/Card";
 import Carrousel from "@/components/util/Carousel";
 import WhiteDiv from "@/components/util/WhiteDiv";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs, Paper, Typography } from "@mui/material";
 import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,15 +12,18 @@ import Roupa from "../../public/roupa2.jpg";
 import styles from "../styles/Product.module.css";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import AddShoppingCartRoundedIcon from "@mui/icons-material/AddShoppingCartRounded";
+import MiniCard from "@/components/util/MiniCard";
+
 interface ProdutoProps {
   nome: string;
 }
 function handleClick() {
- console.log(55*9*95-682+7)
+  console.log(55 * 9 * 95 - 682 + 7);
 }
 
 export default function Product(props: ProdutoProps) {
-  const nome = "Litte Teti - " + props.nome;
+  const nome = "Litte Teti - ";
 
   const breadcrumbs = [
     <Link
@@ -45,6 +48,8 @@ export default function Product(props: ProdutoProps) {
       Nome Produto
     </Typography>,
   ];
+
+  const preco = "44.80";
   return (
     <>
       <HeadAuth title={nome} />
@@ -60,44 +65,61 @@ export default function Product(props: ProdutoProps) {
         </Breadcrumbs>
       </div>
       <br />
-      <div className="flex max-sm:flex-row flex-col justify-start items-start bg-slate-50 rounded-2xl sm:mx-44 mx-12">
-        <div className="h-full sm:w-4/12 w-full">
-          {/* <Carrousel /> */}
-          <Image
-            src={Roupa}
-            alt={props.nome}
-            className="sm:rounded-l-2xl max-sm:rounded-t-2xl "
-          />
-        </div>
-        <div className="h-full sm:w-8/12 w-full">
-          <div className="flex justify-end w-full p-4 sm:p-12">
-            <FavoriteBorderRoundedIcon className="text-gray-500 h-8 w-8" />
-            <FavoriteRoundedIcon className="pink h-8 w-8" />
+      <div className="mx-10 sm:mx-48">
+        <Paper
+          elevation={3}
+          className="w-full sm:h-80 rounded-md"
+          style={{ height: "32rem" }}
+        >
+          <div className="flex flex-col sm:flex-row">
+            <Image
+              alt={"roupa"}
+              src={"/roupa3.jpg"}
+              width={500}
+              height={500}
+              className="sm:h-96 sm:w-96 rounded-md"
+            ></Image>
+            <div className="leading-7 text-pink-600 mt-4">
+              <div className="flex justify-end mr-8">
+                <FavoriteRoundedIcon></FavoriteRoundedIcon>
+                <FavoriteBorderRoundedIcon className="text-gray-500"></FavoriteBorderRoundedIcon>
+              </div>
+              <h3 className="text-2xl font-bold text-center pink">{nome}</h3>
+              <h4 className="text-xl font-light text-left ml-8 line-through">
+                R$ 44.00
+              </h4>
+              <h4 className="text-2xl font-bold text-right mt-4 mr-8 pink">
+                R$ {preco}
+              </h4>
+            </div>
           </div>
-          <div className="pl-8">
-            <h1 className="font-bold text-2xl">Roupa</h1>
-
-            <h5 className="text-gray-500 font-light">
-              Descrição sobre a roupa em poucas palavras
-            </h5>
-
-            <br />
-            <h2 className="font-bold text-xl">
-              R${" "}
-              <span className="undeline">
-                55.<small>90</small>
-              </span>
-            </h2>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <button className={styles.btn}> Button</button>
-          </div>
+        </Paper>
+        <div className="flex flex-row justify-end mt-16">
+          <button className={styles.btn} style={{ marginRight: "1rem" }}>
+            <AddShoppingCartRoundedIcon />
+          </button>
+          <button className={styles.btn}>Comprar</button>
         </div>
+        <br />
+        <br />
+        <br />
+        <h1 className="text-white font-extrabold text-2xl pl-3 border-l-4">
+          A galera tá de olho
+        </h1>
+        <br />
+        <br />
+        <div className="flex flex-row justify-between flex-wrap">
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/maite.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa2.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa3.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa1.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa2.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa3.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa1.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa2.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa3.jpg"/>
+          <MiniCard titulo="Roupa Infantil" preco="R$ 75.80" image="/roupa1.jpg"/>
+      </div>
       </div>
       <br />
     </>
