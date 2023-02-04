@@ -14,7 +14,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import ToysRoundedIcon from '@mui/icons-material/ToysRounded';
+import Face3RoundedIcon from '@mui/icons-material/Face3Rounded';
+import FaceRoundedIcon from '@mui/icons-material/FaceRounded';
+import BedroomBabyRoundedIcon from '@mui/icons-material/BedroomBabyRounded';
+import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 
 interface PropsNavbar {
   exibe1?: boolean;
@@ -49,13 +55,16 @@ export default function Navbar(props: PropsNavbar) {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250, backgroundColor: "transparent" }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+        backgroundColor: "transparent",
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className="bg-transparent">
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {/* {["Inicio", "Meninas", "Meninos", "Acessórios", "Login"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -64,20 +73,71 @@ export default function Navbar(props: PropsNavbar) {
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-        ))}
+        ))} */}
+        <ListItem key={"Inicio"} disablePadding>
+          <Link href={"/"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <HomeRoundedIcon className="text-blue-600"/>
+              </ListItemIcon>
+              <ListItemText primary={"Inicio"} className="text-blue-600"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={"Meninas"} disablePadding>
+          <Link href={"/girls"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <Face3RoundedIcon className="pink" />
+              </ListItemIcon>
+              <ListItemText primary={"Meninas"} className="pink"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={"Meninos"} disablePadding>
+          <Link href={"/boys"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <FaceRoundedIcon className="text-blue-600"/>
+              </ListItemIcon>
+              <ListItemText primary={"Meninos"} className="text-blue-600 font-bold"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={"Acessórios"} disablePadding>
+          <Link href={"/acessories"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <BedroomBabyRoundedIcon className="pink"/>
+              </ListItemIcon>
+              <ListItemText primary={"Acessórios"} className="pink"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={"Login"} disablePadding>
+          <Link href={"/login"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ExitToAppRoundedIcon className="text-gray-900"/>
+              </ListItemIcon>
+              <ListItemText primary={"Login"} className="text-gray-900"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <ListItem key={"Cart"} disablePadding>
+          <Link href={"/cart"}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ShoppingCartRoundedIcon className="text-gray-900"/>
+              </ListItemIcon>
+              <ListItemText primary={"Cart"} className="text-gray-900"/>
+            </ListItemButton>
+          </Link>
+        </ListItem>
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+      <List className="flex justify-center mt-4">
+        <Image src="/Logo.png" width={150} height={150} alt="logo" className="animate__animated animate__jello"/>
       </List>
     </Box>
   );

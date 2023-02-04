@@ -9,7 +9,7 @@ export default function Boys() {
       <HeadAuth title="Little Teti - Meninas" />
       <Navbar />
       <br />
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap px-16 mt-4">
         <Card
           titulo="Roupa Infantil"
           cores={["blue", "white", "dodgerblue"]}

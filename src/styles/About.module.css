@@ -1,7 +1,7 @@
 .divP{
     height: 100vh;
-    width: 85%;
-    background-color: #fff;
+    width: 90%;
+    background-color: #FFF9E9;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
@@ -9,3 +9,10 @@
     align-items: center;
     font-family: 'Nunito', sans-serif;
 }
+
+hr.new5 {
+    border: 1px solid #222;
+    border-radius: 5px;
+    width: 100%;
+
+  }

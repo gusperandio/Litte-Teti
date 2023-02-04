@@ -63,18 +63,22 @@ export default function Footer() {
           <div className="flex justify-center  font-semibold text-center">
             <ul>
               <li className="pt-10">Whats App</li>
-              <li className="pt-10 flex flex-col items-center text-sm font-bold">
-                Development by
-                <br />
-                <Image
-                  src="/hb-logo.png"
-                  alt="Picture of the author"
-                  width={60}
-                  height={60}
-                  priority
-                ></Image>
-                <h4 className="text-yellow-500">HONEY BEE</h4>
-              </li>
+              <Link href={"https://gustavofusco.github.io"} legacyBehavior>
+              <a target="_blank">
+                <li className="pt-10 flex flex-col items-center text-sm font-semibold">
+                  Desenvolvido por
+                  <br />
+                  <Image
+                    src="/hb-logo.png"
+                    alt="Picture of the author"
+                    width={40}
+                    height={40}
+                    priority
+                  ></Image>
+                  <h4 className="text-yellow-500">HONEY BEE</h4>
+                </li>
+                </a>
+              </Link>
             </ul>
           </div>
         </div>

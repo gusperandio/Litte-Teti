@@ -10,7 +10,8 @@ export default function Accessories() {
       <HeadAuth title="Little Teti - Meninas"/>
       <Navbar />
       <br/>
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap px-16 mt-4">
+        {/* <Card titulo="Roupa Infantil" />
         <Card titulo="Roupa Infantil" />
         <Card titulo="Roupa Infantil" />
         <Card titulo="Roupa Infantil" />
@@ -19,8 +20,7 @@ export default function Accessories() {
         <Card titulo="Roupa Infantil" />
         <Card titulo="Roupa Infantil" />
         <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
-        <Card titulo="Roupa Infantil" />
+        <Card titulo="Roupa Infantil" /> */}
       </div>
       <Footer />
     </>
