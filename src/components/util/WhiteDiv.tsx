@@ -26,7 +26,7 @@ interface IProps {
  export default class WhiteDiv extends React.Component<IProps> {
   render() {
     return (
-      <div className="flex justify-center items-center mx-16">
+      <div className="flex justify-center items-center">
         <div
           className="bg-slate-50 rounded-2xl"
           style={{ width: this.props.width, height: this.props.height }}

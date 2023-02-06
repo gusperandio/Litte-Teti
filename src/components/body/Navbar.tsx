@@ -105,7 +105,7 @@ export default function Navbar(props: PropsNavbar) {
           </Link>
         </ListItem>
         <ListItem key={"Acessórios"} disablePadding>
-          <Link href={"/acessories"}>
+          <Link href={"/accessories"}>
             <ListItemButton>
               <ListItemIcon>
                 <BedroomBabyRoundedIcon className="pink"/>

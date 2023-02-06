@@ -14,7 +14,6 @@ export default function Sobre() {
         <div className={styles.divP}>
           <br />
           <hr className="w-72 border border-gray-800" />
-          {/* */}
           <Image
             src="/maite.jpg"
             alt="Maite Sperandio"

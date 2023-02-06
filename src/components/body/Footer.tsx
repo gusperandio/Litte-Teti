@@ -56,7 +56,9 @@ export default function Footer() {
               <li className="pt-10">
                 <Link href="/about">Sobre</Link>
               </li>
-              <li className="pt-10">Contato</li>
+              <li className="pt-10">
+                <Link href="/contact">Contato</Link>
+              </li>
             </ul>
           </div>
 
@@ -64,19 +66,19 @@ export default function Footer() {
             <ul>
               <li className="pt-10">Whats App</li>
               <Link href={"https://gustavofusco.github.io"} legacyBehavior>
-              <a target="_blank">
-                <li className="pt-10 flex flex-col items-center text-sm font-semibold">
-                  Desenvolvido por
-                  <br />
-                  <Image
-                    src="/hb-logo.png"
-                    alt="Picture of the author"
-                    width={40}
-                    height={40}
-                    priority
-                  ></Image>
-                  <h4 className="text-yellow-500">HONEY BEE</h4>
-                </li>
+                <a target="_blank">
+                  <li className="pt-10 flex flex-col items-center text-sm font-semibold">
+                    Desenvolvido por
+                    <br />
+                    <Image
+                      src="/hb-logo.png"
+                      alt="Picture of the author"
+                      width={40}
+                      height={40}
+                      priority
+                    ></Image>
+                    <h4 className="text-yellow-500">HONEY BEE</h4>
+                  </li>
                 </a>
               </Link>
             </ul>
