@@ -1,0 +1,133 @@
+.card {
+  width: 190px;
+  height: 274px;
+  background: white;
+  padding: 0.4em;
+  border-radius: 6px;
+  margin: 1rem;
+}
+
+.cardimage {
+  background-color: rgb(236, 236, 236);
+  width: 100%;
+  height: 60%;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+.money {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3f79e6;
+  padding: 0px 8px 0;
+  text-align: end;
+  .colormoneyBoy {
+    color: #3f79e6;
+  }
+
+  .colormoneyGirl {
+    color: #e63f8d;
+  }
+}
+
+.money:hover {
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: 600;
+  color: rgb(88, 87, 87);
+  padding: 7px 7px 0 7px;
+  text-align: start;
+}
+
+.heading:hover {
+  cursor: pointer;
+}
+
+.author {
+  color: gray;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+@media (width <= 520px) {
+  .card {
+    width: 8rem;
+    height: 14rem;
+    background: white;
+    border-radius: 6px;
+    margin: 0.5rem;
+  }
+  
+  .cardimage {
+    background-color: rgb(236, 236, 236);
+    width: 100%;
+    height: 60%;
+    border-radius: 6px 6px 0 0;
+  }
+  
+  .card-image:hover {
+    transform: scale(0.98);
+  }
+  
+  .money {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #3f79e6;
+    padding: 0px 8px 0;
+    text-align: end;
+    .colormoneyBoy {
+      color: #3f79e6;
+    }
+  
+    .colormoneyGirl {
+      color: #e63f8d;
+    }
+  }
+  
+  .money:hover {
+    cursor: pointer;
+  }
+  
+  .heading {
+    font-weight: 600;
+    color: rgb(88, 87, 87);
+    padding: 7px 7px 0 7px;
+    font-size: 16px;
+  }
+  
+  .heading:hover {
+    cursor: pointer;
+  }
+  
+  .author {
+    color: gray;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: start;
+    text-decoration: line-through;
+  }
+  
+  .name {
+    font-weight: 600;
+  }
+  
+  .name:hover {
+    cursor: pointer;
+  }
+}
