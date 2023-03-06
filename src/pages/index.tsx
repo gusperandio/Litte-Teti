@@ -2,6 +2,11 @@ import Card from "@/components/Card/Card";
 import Head from "next/head";
 import style from "../styles/home.module.scss";
 export default function Home() {
+
+  const alterEgo = () =>{
+    return parseInt((Math.random() * (4 - 1) + 1).toString(), 10)
+  }
+  
   const arrayEx = [
     {
       card: 1,
@@ -77,16 +82,17 @@ export default function Home() {
       <br />
 
       <div className={style.cards}>
-        {arrayEx.map((r)=>{
-            return(<Card
-            title={r.title}
-            key={r.card}
-            precoAlt={99.9}
-            preco={50}
-            girl={r.girl}
-          />)
+        {arrayEx.map((r) => {
+          return (
+            <Card
+              title={r.title}
+              key={r.card}
+              precoAlt={99.9}
+              preco={50}
+              girl={r.girl}
+            />
+          );
         })}
-        
       </div>
     </>
   );
