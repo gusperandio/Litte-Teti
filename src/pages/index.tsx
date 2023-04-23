@@ -1,19 +1,36 @@
 import Card from "@/components/Card/Card";
 import Head from "next/head";
 import style from "../styles/home.module.scss";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import CardsList from "@/components/CardsList/CardsList";
 export default function Home() {
+  const logo = () => {
+    let result = "";
+    let n = parseInt((Math.random() * (4 - 1) + 1).toString(), 10);
+    switch (n) {
+      case 1:
+        result = "/roupa1.jpg";
+        break;
+      case 2:
+        result = "/roupa2.jpg";
+        break;
+      case 3:
+        result = "/roupa3.jpg";
+        break;
+    }
 
-  const alterEgo = () =>{
-    return parseInt((Math.random() * (4 - 1) + 1).toString(), 10)
-  }
-  
+    return result;
+  };
+
   const arrayEx = [
     {
       card: 1,
-      title: "Roupa infantil de menina",
+      title: "Roupa infantil",
       precoAlt: 88.8,
-      preco: 50,
+      preco: 40,
       girl: true,
+      image: logo(),
     },
     {
       card: 2,
@@ -21,6 +38,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: false,
+      image: logo(),
     },
     {
       card: 3,
@@ -28,6 +46,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: false,
+      image: logo(),
     },
     {
       card: 5,
@@ -35,6 +54,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: true,
+      image: logo(),
     },
     {
       card: 6,
@@ -42,6 +62,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: true,
+      image: logo(),
     },
     {
       card: 7,
@@ -49,6 +70,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: false,
+      image: logo(),
     },
     {
       card: 99,
@@ -56,6 +78,7 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: true,
+      image: logo(),
     },
     {
       card: 122,
@@ -63,13 +86,23 @@ export default function Home() {
       precoAlt: 88.8,
       preco: 50,
       girl: false,
+      image: logo(),
     },
     {
       card: 153,
       title: "Roupa infantil de menino",
       precoAlt: 88.8,
-      preco: 50,
+      preco: 40,
       girl: false,
+      image: logo(),
+    },
+    {
+      card: 159,
+      title: "Roupa infantil de menino",
+      precoAlt: 85.8,
+      preco: 39,
+      girl: false,
+      image: logo(),
     },
   ];
 
@@ -78,22 +111,12 @@ export default function Home() {
       <Head>
         <title>Little Teti</title>
       </Head>
-
+      <Header />
       <br />
 
-      <div className={style.cards}>
-        {arrayEx.map((r) => {
-          return (
-            <Card
-              title={r.title}
-              key={r.card}
-              precoAlt={99.9}
-              preco={50}
-              girl={r.girl}
-            />
-          );
-        })}
-      </div>
+      <CardsList arrayEx={arrayEx} />
+
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 body {
-  font-family: 'Signika Negative', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
-  background: linear-gradient(90deg, #FFAFCC, #A2D2FF)
+  padding: 0;
+  background: linear-gradient(90deg, #FFAFCC, #A2D2FF);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, h2, h3{
+  margin: 0;
+}
+
+a{
+  color: #000
+}
+
+.middle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-pink{
+  color: #fff;
+  background-color: #e63f8d;
 }

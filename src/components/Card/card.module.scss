@@ -1,17 +1,18 @@
 .card {
   width: 190px;
-  height: 274px;
-  background: white;
-  padding: 0.4em;
-  border-radius: 6px;
-  margin: 1rem;
+  height: 320px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  margin: 1.8rem;
+  text-decoration: none;
 }
 
 .cardimage {
   background-color: rgb(236, 236, 236);
   width: 100%;
-  height: 60%;
-  border-radius: 6px 6px 0 0;
+  height: 65%;
+  border-radius: 1px 1px 0 0;
 }
 
 .card-image:hover {
@@ -22,9 +23,13 @@
   text-transform: uppercase;
   font-size: 2rem;
   font-weight: 600;
-  color: #3f79e6;
-  padding: 0px 8px 0;
-  text-align: end;
+  padding: 8px 10px 0px;
+  position: relative;
+  top: -12px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
   .colormoneyBoy {
     color: #3f79e6;
   }
@@ -32,10 +37,18 @@
   .colormoneyGirl {
     color: #e63f8d;
   }
+
+  small {
+    font-weight: 500;
+  }
 }
 
 .money:hover {
   cursor: pointer;
+}
+
+.heart{
+  color: #000;
 }
 
 .heading {
@@ -43,6 +56,7 @@
   color: rgb(88, 87, 87);
   padding: 7px 7px 0 7px;
   text-align: start;
+  height: 31%;
 }
 
 .heading:hover {
@@ -52,7 +66,7 @@
 .author {
   color: gray;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   text-decoration: line-through;
 }
 
@@ -66,68 +80,79 @@
 
 @media (width <= 520px) {
   .card {
-    width: 8rem;
-    height: 14rem;
-    background: white;
-    border-radius: 6px;
-    margin: 0.5rem;
+    width: 180px;
+    height: 300px;
+    background: rgb(236, 236, 236);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin: 0.3rem;
+    text-decoration: none;
   }
-  
+
   .cardimage {
     background-color: rgb(236, 236, 236);
     width: 100%;
     height: 60%;
-    border-radius: 6px 6px 0 0;
+    border-radius: 1px 1px 0 0;
   }
-  
   .card-image:hover {
     transform: scale(0.98);
   }
-  
-  .money {
-    text-transform: uppercase;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #3f79e6;
-    padding: 0px 8px 0;
-    text-align: end;
-    .colormoneyBoy {
-      color: #3f79e6;
-    }
-  
-    .colormoneyGirl {
-      color: #e63f8d;
-    }
-  }
-  
+
   .money:hover {
     cursor: pointer;
   }
-  
+
   .heading {
     font-weight: 600;
     color: rgb(88, 87, 87);
-    padding: 7px 7px 0 7px;
-    font-size: 16px;
+    padding: 1rem 8px 0 8px;
+    font-size: 1rem;
+    width: 100%;
+    height: 30%;
   }
-  
+
   .heading:hover {
     cursor: pointer;
   }
-  
+
   .author {
     color: gray;
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 1rem;
     text-align: start;
     text-decoration: line-through;
   }
-  
+
   .name {
     font-weight: 600;
   }
-  
+
   .name:hover {
     cursor: pointer;
   }
+}
+
+@media (width <= 380px) {
+  .card {
+    width: 165px;
+    height: 280px;
+    background: rgb(236, 236, 236);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin: 0.3rem;
+    text-decoration: none;
+  }
+
+  .heading {
+    font-weight: 600;
+    color: rgb(88, 87, 87);
+    padding: 1rem 8px 0 8px;
+    font-size: 0.9rem;
+    width: 100%;
+    height: 30%;
+  }
+
 }

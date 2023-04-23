@@ -1,0 +1,209 @@
+.card {
+  display: flex;
+  align-items: center;
+  width: 75vw;
+  max-width: 650px;
+  padding: 50px 30px 50px 20px;
+  background: #fff;
+  border-radius: 24px;
+}
+.top {
+  margin-top: 5rem;
+}
+.cardimg {
+  max-width: 280px;
+  width: 29vw;
+  height: 250px;
+  object-fit: cover;
+  margin-left: -60px;
+  margin-right: 30px;
+  border-radius: 5px;
+  box-shadow: 0 60px 40px rgb(0 0 0 / 8%);
+}
+
+.cardh3 {
+  position: relative;
+  color: rgb(0 0 0 / 90%);
+  font-weight: 700;
+  right: 5px;
+}
+
+.colormoneyBoy {
+  color: #3f79e6;
+}
+
+.colormoneyGirl {
+  color: #e63f8d;
+}
+
+.cardp {
+  color: rgb(0 0 0 / 70%);
+  text-decoration: line-through;
+}
+
+.sizes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 220px;
+}
+
+.cardbutton {
+  border: 0;
+  background: #5448de;
+  color: #f8f8f8;
+  font-family: inherit;
+  padding: 1rem 26px;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+@media (width <= 740px) {
+  .card {
+    flex-direction: column;
+    text-align: center;
+    margin: 0 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+  }
+
+  .cardimg {
+    margin: -100px 0 30px 0;
+    width: 100%;
+    max-width: 1000px;
+    height: 50vw;
+  }
+
+  .boxText {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// BTN Boy
+.Btn {
+  position: relative;
+  width: 180px;
+  height: 50px;
+  border: none;
+  background-color: #005f99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 8px 8px 0px rgb(12, 12, 12);
+  transition-duration: 0.3s;
+}
+
+.Layer {
+  width: 60px;
+  position: absolute;
+  left: -30px;
+  transition-duration: 0.3s;
+  animation: spin 5s linear infinite;
+}
+
+.Btn:hover {
+  transform: translateY(5px);
+  box-shadow: 3px 3px 0px black;
+  transition-duration: 0.3s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Btn:hover .Layer {
+  left: 0%;
+  width: 100%;
+  transition-duration: 0.3s;
+}
+
+.text {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1em;
+  position: absolute;
+  z-index: 2;
+  transition-duration: 0.1s;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+  padding-top: 12px;
+}
+
+.Btn:hover .text {
+  color: transparent;
+  transition-duration: 0.3s;
+}
+/* svg colors */
+.cls1 {
+  fill: #242021;
+}
+
+.cls2 {
+  fill: #e82728;
+}
+
+.cls3 {
+  fill: #fefefe;
+}
+
+.cls4 {
+  fill: #e92728;
+}
+
+.cls5 {
+  fill: #005f99;
+}
+
+.cls6 {
+  fill: #fff;
+}
+
+
+// BTN Girl
+.btnGirl {
+  position: relative;
+  background: #e63f8d;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  padding: 1rem 3rem;
+  font-size: 1em;
+  color: #fff;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.btnGirl::before {
+  position: absolute;
+  content: '';
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  transform: translate(-5px, -5px);
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(84, 84, 84);
+  transition: .25s ease;
+}
+
+.btnGirl:hover {
+  transform: translate(-5px, -5px);
+}
+
+.btnGirl:hover::before {
+  transform: translate(5px, 5px);
+}
