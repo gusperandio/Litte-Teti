@@ -1,4 +1,4 @@
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header";
 import Image from "next/image";
 import style from "../styles/product.module.scss";
 import CardsList from "@/components/CardsList/CardsList";
@@ -158,7 +158,6 @@ export default function product() {
 
   return (
     <>
-      <Header />
       <div className={`${style.top} middle`}>
         <div className={style.card}>
           {/* <img src="../../public/" className={style.cardimg} /> */}

@@ -1,9 +1,8 @@
-import Header from "@/components/Header/Header"
+import Header from "@/components/Header"
 
 export default function Girls(){
   return (
     <>
-    <Header></Header>
       <h1>Girls</h1>
     </>
   )

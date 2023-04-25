@@ -90,7 +90,6 @@ export default function Card(props: CardProps) {
                 R$ {props.preco}.<small>00</small>
               </span>
             )}
-            <BtnDislike />
           </div>
         </div>
       </div>

@@ -1,7 +1,12 @@
 import style from "./header.module.scss";
+import { useSession, signIn, signOut } from "next-auth/react";
 import logo from "../../../public/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import url from "url";
+import { useRouter } from "next/router";
+import BackButton from "../BackButton";
+
 export default function Header() {
   const searchIcon = (
     <svg
@@ -55,10 +60,18 @@ export default function Header() {
     </svg>
   );
 
-  return (
+  const router = useRouter();
+  console.log(router.pathname);
+  const { data: session, status } = useSession();
+  return router.pathname === "/login" ? (
     <>
       <div className={style.user}>
-        <div style={{ color: "#e91e63" }}>a</div>
+        <BackButton />
+      </div>
+    </>
+  ) : (
+    <>
+      <div className={style.user}>
         <div>
           <a
             className="nav-link dropdown-toggle"
@@ -70,22 +83,49 @@ export default function Header() {
             aria-expanded="false"
             style={{ display: "flex", alignItems: "center", color: "#fff" }}
           >
-            {userIcon} visitante
+            {/* {status === "loading" ? (
+              <span>{userIcon} visitante</span>
+            ) : session ? (
+              <span>{`${userIcon} ${session?.user?.name}`}</span>
+            ) : (
+              <span>{userIcon} visitante</span>
+            )} */}
+            <>{userIcon} Olá, visitante</>
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="#">
-              Login
-            </a>
-            <a className="dropdown-item" href="#">
-              Cadastrar
-            </a>
+            {status === "loading" ? (
+              <>
+                <a className="dropdown-item" href="/login">
+                  Login
+                </a>
+                <a className="dropdown-item text-primary" href="/login">
+                  Cadastrar
+                </a>
+              </>
+            ) : session ? (
+              <>{`Olá, ${userIcon} ${session?.user?.name}`}</>
+            ) : (
+              <>
+                <a className="dropdown-item" href="/login">
+                  Login
+                </a>
+                <a className="dropdown-item text-primary" href="/login">
+                  Cadastrar
+                </a>
+              </>
+            )}
+
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
+            <Link href="/contact" className="dropdown-item">
               Contato
-            </a>
+            </Link>
           </div>
         </div>
-        <div className={style.cartIcon}>{cartIcon}</div>
+        <div className={style.cartIcon}>
+          <Link href={"/cart"} style={{ color: "#fff" }}>
+            {cartIcon}
+          </Link>
+        </div>
       </div>
       <div className={style.frete}>
         <p>
@@ -97,17 +137,17 @@ export default function Header() {
       </div>
       <div className="middle">
         <div className={`${style.header}`}>
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <button className="btn btn-sm btn-primary">Inicio</button>
-          </Link>
+          </Link> */}
           <Link href={"/girls"}>
-            <button className="btn btn-sm btn-pink">Meninas</button>
+            <button className="btn btn-pink">Meninas</button>
           </Link>
           <Link href={"/boys"}>
-            <button className="btn btn-sm btn-primary">Meninos</button>
+            <button className="btn btn-primary">Meninos</button>
           </Link>
           <Link href={"/contact"}>
-            <button className="btn btn-sm btn-outline-success">Contato</button>
+            <button className="btn btn-outline-success">Contato</button>
           </Link>
         </div>
       </div>

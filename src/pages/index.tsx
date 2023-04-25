@@ -1,7 +1,7 @@
 import Card from "@/components/Card/Card";
 import Head from "next/head";
 import style from "../styles/home.module.scss";
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer/Footer";
 import CardsList from "@/components/CardsList/CardsList";
 export default function Home() {
@@ -111,10 +111,10 @@ export default function Home() {
       <Head>
         <title>Little Teti</title>
       </Head>
-      <Header />
       <br />
-
-      <CardsList arrayEx={arrayEx} />
+      <main>
+        <CardsList arrayEx={arrayEx} />
+      </main>
 
       <Footer />
     </>
