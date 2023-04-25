@@ -61,7 +61,6 @@ export default function Header() {
   );
 
   const router = useRouter();
-  console.log(router.pathname);
   const { data: session, status } = useSession();
   return router.pathname === "/login" ? (
     <>

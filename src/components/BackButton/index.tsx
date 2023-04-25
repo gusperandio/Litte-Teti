@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function BackButton() {
   return (
     <>
-      <Link href="/">
+      <Link href="/" style={{textDecoration: "none"}}>
         <button className={style.btnBack} style={{ marginLeft: "1rem" }}>
           <svg
             height="24"
