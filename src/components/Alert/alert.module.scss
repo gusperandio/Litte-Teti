@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+$primary-color: #4d4dff;
+$secondary-color: #666666;
+$danger-color: #ff3838;
+$warning-color: #ffba00;
+$success-color: #2ec946;
+
+.main {
+  padding: 40px;
+  
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.alert {
+  width: 512px;
+  padding: 16px;
+  margin: 8px;
+  max-width: 90%;
+  
+}
+
+@mixin alert_1($color) {
+  background-color: whitesmoke;
+  
+  .alert_title {
+    color: $color;
+  }
+}
+
+@mixin alert_2($color) {
+  border-left: 4px solid $color;
+  background-color: whitesmoke;
+  
+  .alert_title {
+    color: $color;
+  }
+}
+
+@mixin alert_3($color) {
+  border: 1px solid lighten($color, 25%);
+  border-radius: 8px;
+  background-color: whitesmoke;
+  
+  .alert_title {
+    color: $color;
+  }
+}
+
+.alert_1_primary {
+  @include alert_1($primary-color);
+}
+
+.alert_1_warning {
+  @include alert_1($warning-color);
+}
+
+.alert_2_success {
+  @include alert_2($success-color);
+}
+
+.alert_2_secondary {
+  @include alert_2($secondary-color);
+}
+
+.alert_3_primary {
+  @include alert_3($primary-color);
+}
+
+.alert_3_danger {
+  @include alert_3($danger-color);
+}
+
+.alert_title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.alert_content {
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #555555;
+}

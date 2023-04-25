@@ -117,7 +117,13 @@
   transform: scale(1.02);
 }
 
-
+.errorMsg{
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.8px;
+}
 
 .divTop{
   display: flex;
