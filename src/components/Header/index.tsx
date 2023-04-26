@@ -1,9 +1,6 @@
 import style from "./header.module.scss";
-import { useSession, signIn, signOut } from "next-auth/react";
-import logo from "../../../public/Logo.png";
-import Image from "next/image";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
-import url from "url";
 import { useRouter } from "next/router";
 import BackButton from "../BackButton";
 
@@ -69,14 +66,15 @@ export default function Header() {
             aria-expanded="false"
             style={{ display: "flex", alignItems: "center", color: "#fff" }}
           >
-            {/* {status === "loading" ? (
-              <span>{userIcon} visitante</span>
+            {status === "loading" ? (
+              <> {userIcon} Olá, visitante</>
             ) : session ? (
-              <span>{`${userIcon} ${session?.user?.name}`}</span>
+              <>
+                {userIcon} {`Olá, ${session?.user?.name?.split(" ")[0]}`}
+              </>
             ) : (
-              <span>{userIcon} visitante</span>
-            )} */}
-            <>{userIcon} Olá, visitante</>
+              <> {userIcon} Olá, visitante</>
+            )}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             {status === "loading" ? (
@@ -89,7 +87,17 @@ export default function Header() {
                 </a>
               </>
             ) : session ? (
-              <>{`Olá, ${userIcon} ${session?.user?.name}`}</>
+              <>
+                <a className="dropdown-item" href="/login">
+                  Meus Dados
+                </a>
+                <a className="dropdown-item" href="/login">
+                  Meus pedidos
+                </a>
+                <a className="dropdown-item" href="/login">
+                  Favoritos
+                </a>
+              </>
             ) : (
               <>
                 <a className="dropdown-item" href="/login">
@@ -105,6 +113,21 @@ export default function Header() {
             <Link href="/contact" className="dropdown-item">
               Contato
             </Link>
+            {status === "loading" ? (
+              <></>
+            ) : session ? (
+              <p
+                className="dropdown-item text-danger"
+                onClick={() => {
+                  signOut();
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                Sair
+              </p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className={style.cartIcon}>

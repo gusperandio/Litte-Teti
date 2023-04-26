@@ -1,12 +1,58 @@
 import Head from "next/head";
 import style from "./login.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Alert from "@/components/Alert";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+
 export default function Login() {
-  const bntGoogle = (text: string) => {
+  const [cadastro, setCadastro] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErroMsg] = useState("");
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  let i = 0;
+  useEffect(() => {
+    if (status === "authenticated") {
+      if (localStorage.getItem("auth") === "register") {
+        verifyEmail();
+        if (errorMsg === "") {
+          register();
+        }
+      }
+
+      router.push("/");
+    }
+  }, [status]);
+
+  function loginGoogle(type: string) {
+    localStorage.setItem("auth", type);
+    signIn("google");
+  }
+
+  function genPassword() {
+    let chars =
+      "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let passwordLength = 12;
+    let pass = "";
+    for (let i = 0; i <= passwordLength; i++) {
+      let randomNumber = Math.floor(Math.random() * chars.length);
+      pass += chars.substring(randomNumber, randomNumber + 1);
+    }
+
+    return pass;
+  }
+
+  const bntGoogle = (text: string, type: string) => {
     return (
-      <button className={style.btnGoogle}>
+      <button
+        className={style.btnGoogle}
+        onClick={() => {
+          loginGoogle(type);
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid"
@@ -34,30 +80,49 @@ export default function Login() {
     );
   };
 
-  const [cadastro, setCadastro] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMsg, setErroMsg] = useState("");
-  let error = false
-  async function handleSubmit(event: any) {
+  function handleSubmit(event: any) {
     event.preventDefault();
+    localStorage.setItem("register", "normal");
+    register();
+  }
+  async function register() {
     const newUser = {
-      name: name,
-      email: email,
-      password: password,
+      name: name ? name : session?.user.name,
+      email: email ? email : session?.user.email,
+      password: password ? password : genPassword(),
     };
-    await axios
-      .post("http://localhost:3334/users", newUser)
-      .then(function (response) {
-        console.log(response, "OK");
-      })
-      .catch(function (error) {
-        setErroMsg(error.response.data.message);
-        setTimeout(() => {
-            setErroMsg("")
-        }, 2500);
-      });
+    if (email || session?.user.email) {
+      await axios
+        .post("http://localhost:3334/users", newUser)
+        .then(function (resp) {
+          console.log(resp);
+          if (localStorage.getItem("register") === "normal") {
+            localStorage.removeItem("register");
+            router.push("/");
+          }
+        })
+        .catch(function (error) {
+          console.log(error, "1");
+          setErroMsg(error.response.data.message);
+          setTimeout(() => {
+            setErroMsg("");
+          }, 3000);
+        });
+    }
+  }
+  async function verifyEmail() {
+    if (email || session?.user.email) {
+      await axios
+        .get(
+          `http://localhost:3334/users/${email ? email : session?.user.email}`
+        )
+        .catch(function (error) {
+          setErroMsg(error.response.data.message);
+          setTimeout(() => {
+            setErroMsg("");
+          }, 3000);
+        });
+    }
   }
 
   return (
@@ -78,86 +143,94 @@ export default function Login() {
           <br />
           <br />
           {cadastro ? (
-            //FORMULARIO CADASTRO
-            <form onSubmit={handleSubmit}>
-              <div className={style.input_container}>
-                <input
-                  placeholder="Nome e Sobrenome"
-                  type="text"
-                  required
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-person-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path
-                      fillRule="evenodd"
-                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                    />
-                  </svg>
-                </span>
-              </div>
-              <div className={style.input_container}>
-                <input
-                  placeholder="E-mail"
-                  type="email"
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <span>
-                  <svg
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                      strokeWidth="2"
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                    ></path>
-                  </svg>
-                </span>
-              </div>
-              <div className={style.input_container}>
-                <input
-                  placeholder="Senha"
-                  type="password"
-                  required
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
+            <>
+              <form onSubmit={handleSubmit}>
+                <div className={style.input_container}>
+                  <input
+                    placeholder="Nome e Sobrenome"
+                    type="text"
+                    required
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-person-circle"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                      <path
+                        fillRule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <div className={style.input_container}>
+                  <input
+                    placeholder="E-mail"
+                    type="email"
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={(e) => verifyEmail()}
+                  />
+                  <span>
+                    <svg
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                <div className={style.input_container}>
+                  <input
+                    placeholder="Senha"
+                    type="password"
+                    required
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
 
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-lock"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                  </svg>
-                </span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-lock"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                    </svg>
+                  </span>
+                </div>
+                <br />
+                {errorMsg !== "" ? (
+                  <p className={style.errorMsg}>{errorMsg}</p>
+                ) : (
+                  <></>
+                )}
+                <button className={style.submit} type="submit" value="Submit">
+                  Cadastrar
+                </button>
+                <br />
+              </form>
+              <div className="middle">
+                {bntGoogle("Cadastrar com google", "register")}
               </div>
-              <br />
-              {errorMsg !== "" ? <p className={style.errorMsg}>{errorMsg}</p> : <></>}
-              <button className={style.submit} type="submit" value="Submit">
-                Cadastrar
-              </button>
-              <br />
-              <div className="middle">{bntGoogle("Cadastrar com google")}</div>
-            </form>
+            </>
           ) : (
             // FORMULARIO LOGIN
             <form>
@@ -201,7 +274,9 @@ export default function Login() {
                 ACESSAR
               </button>
               <br />
-              <div className="middle">{bntGoogle("Acessar com google")}</div>
+              <div className="middle">
+                {bntGoogle("Acessar com google", "login")}
+              </div>
             </form>
           )}
         </div>
