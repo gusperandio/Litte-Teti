@@ -16,41 +16,91 @@ export default function Login() {
   let i = 0;
   useEffect(() => {
     if (status === "authenticated") {
-      if (localStorage.getItem("auth") === "register") {
-        verifyEmail();
-        if (errorMsg === "") {
-          register();
-        }
+      verifyEmail();
+      if (errorMsg === "") {
+        register(false);
       }
+      token({
+        email: email ? email : session?.user.email,
+        password: password,
+      });
 
       router.push("/");
     }
   }, [status]);
 
-  function loginGoogle(type: string) {
-    localStorage.setItem("auth", type);
-    signIn("google");
+  function registerSubmit(event: any) {
+    event.preventDefault();
+    register(true);
   }
 
-  function genPassword() {
-    let chars =
-      "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let passwordLength = 12;
-    let pass = "";
-    for (let i = 0; i <= passwordLength; i++) {
-      let randomNumber = Math.floor(Math.random() * chars.length);
-      pass += chars.substring(randomNumber, randomNumber + 1);
+  function loginSubmit(event: any) {
+    event.preventDefault();
+    token({ email: email, password: password });
+  }
+
+  async function register(redirect: boolean) {
+    const newUser = {
+      name: name ? name : session?.user.name,
+      email: email ? email : session?.user.email,
+      password: password ? password : "",
+    };
+    if (email || session?.user.email) {
+      await axios
+        .post("http://localhost:3334/users", newUser)
+        .then((e) => {
+          if (redirect) {
+            router.push("/");
+          }
+        })
+        .catch(function (error) {
+          setErroMsg(error.response.data.message);
+          setTimeout(() => {
+            setErroMsg("");
+          }, 3000);
+        });
     }
-
-    return pass;
   }
 
-  const bntGoogle = (text: string, type: string) => {
+  async function verifyEmail() {
+    if (email || session?.user.email) {
+      await axios
+        .get(
+          `http://localhost:3334/users/${email ? email : session?.user.email}`
+        )
+        .catch(function (error) {
+          setErroMsg(error.response.data.message);
+          setTimeout(() => {
+            setErroMsg("");
+          }, 3000);
+        });
+    }
+  }
+
+  async function token(dados: any) {
+    await axios
+      .post("http://localhost:3334/session", dados)
+      .then(function (e) {
+        localStorage.setItem("token", e.data.token);
+        sessionStorage.setItem("id", e.data.user.id);
+        sessionStorage.setItem("name", e.data.user.name);
+
+        router.push("/");
+      })
+      .catch((error) => {
+        setErroMsg(error.response.data.message);
+        setTimeout(() => {
+          setErroMsg("");
+        }, 3000);
+      });
+  }
+
+  const bntGoogle = (text: string) => {
     return (
       <button
         className={style.btnGoogle}
         onClick={() => {
-          loginGoogle(type);
+          signIn("google");
         }}
       >
         <svg
@@ -80,51 +130,6 @@ export default function Login() {
     );
   };
 
-  function handleSubmit(event: any) {
-    event.preventDefault();
-    localStorage.setItem("register", "normal");
-    register();
-  }
-  async function register() {
-    const newUser = {
-      name: name ? name : session?.user.name,
-      email: email ? email : session?.user.email,
-      password: password ? password : genPassword(),
-    };
-    if (email || session?.user.email) {
-      await axios
-        .post("http://localhost:3334/users", newUser)
-        .then(function (resp) {
-          console.log(resp);
-          if (localStorage.getItem("register") === "normal") {
-            localStorage.removeItem("register");
-            router.push("/");
-          }
-        })
-        .catch(function (error) {
-          console.log(error, "1");
-          setErroMsg(error.response.data.message);
-          setTimeout(() => {
-            setErroMsg("");
-          }, 3000);
-        });
-    }
-  }
-  async function verifyEmail() {
-    if (email || session?.user.email) {
-      await axios
-        .get(
-          `http://localhost:3334/users/${email ? email : session?.user.email}`
-        )
-        .catch(function (error) {
-          setErroMsg(error.response.data.message);
-          setTimeout(() => {
-            setErroMsg("");
-          }, 3000);
-        });
-    }
-  }
-
   return (
     <>
       <Head>
@@ -134,7 +139,7 @@ export default function Login() {
         <div className={style.form}>
           <div className={style.divTop}>
             <button className="btnPadrao" onClick={() => setCadastro(false)}>
-              Login
+              Entrar
             </button>
             <button className="btnPadrao" onClick={() => setCadastro(true)}>
               Cadastro
@@ -144,7 +149,7 @@ export default function Login() {
           <br />
           {cadastro ? (
             <>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={registerSubmit}>
                 <div className={style.input_container}>
                   <input
                     placeholder="Nome e Sobrenome"
@@ -227,57 +232,73 @@ export default function Login() {
                 </button>
                 <br />
               </form>
-              <div className="middle">
-                {bntGoogle("Cadastrar com google", "register")}
-              </div>
+              <div className="middle">{bntGoogle("Cadastrar com google")}</div>
             </>
           ) : (
-            // FORMULARIO LOGIN
-            <form>
-              <div className={style.input_container}>
-                <input placeholder="E-mail" type="email" required />
-                <span>
-                  <svg
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                      strokeWidth="2"
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                    ></path>
-                  </svg>
-                </span>
-              </div>
-              <div className={style.input_container}>
-                <input placeholder="Senha" type="password" required />
+            <>
+              <form onSubmit={loginSubmit}>
+                <div className={style.input_container}>
+                  <input
+                    placeholder="E-mail"
+                    type="email"
+                    required
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <span>
+                    <svg
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                      ></path>
+                    </svg>
+                  </span>
+                </div>
+                <div className={style.input_container}>
+                  <input
+                    placeholder="Senha"
+                    type="password"
+                    required
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
 
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-lock"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                  </svg>
-                </span>
-              </div>
-              <br />
-              <p>Esqueci a senha</p>
-              <button className={style.submit} type="submit">
-                ACESSAR
-              </button>
-              <br />
-              <div className="middle">
-                {bntGoogle("Acessar com google", "login")}
-              </div>
-            </form>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-lock"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                    </svg>
+                  </span>
+                </div>
+                <br />
+                <p>Esqueci a senha</p>
+                {errorMsg !== "" ? (
+                  <p className={style.errorMsg}>{errorMsg}</p>
+                ) : (
+                  <></>
+                )}
+                <button className={style.submit} type="submit">
+                  ACESSAR
+                </button>
+                <br />
+              </form>
+              <div className="middle">{bntGoogle("Acessar com google")}</div>
+            </>
           )}
         </div>
       </div>

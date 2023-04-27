@@ -3,8 +3,22 @@ import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import BackButton from "../BackButton";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [name, setName] = useState("");
+  useEffect(() => {
+    const aux = sessionStorage.getItem("name");
+    if (aux) {
+      setName(aux);
+    }
+  });
+
+  const logout = () => {
+    sessionStorage.clear();
+    signOut();
+  };
+
   const searchIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +59,7 @@ export default function Header() {
   );
 
   const router = useRouter();
-  const { data: session, status } = useSession();
+
   return router.pathname === "/login" ? (
     <>
       <div className={style.user}>
@@ -66,18 +80,16 @@ export default function Header() {
             aria-expanded="false"
             style={{ display: "flex", alignItems: "center", color: "#fff" }}
           >
-            {status === "loading" ? (
+            {!name ? (
               <> {userIcon} Olá, visitante</>
-            ) : session ? (
-              <>
-                {userIcon} {`Olá, ${session?.user?.name?.split(" ")[0]}`}
-              </>
             ) : (
-              <> {userIcon} Olá, visitante</>
+              <>
+                {userIcon} {`Olá, ${name?.split(" ")[0]}`}
+              </>
             )}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            {status === "loading" ? (
+            {!name ? (
               <>
                 <a className="dropdown-item" href="/login">
                   Login
@@ -86,7 +98,7 @@ export default function Header() {
                   Cadastrar
                 </a>
               </>
-            ) : session ? (
+            ) : (
               <>
                 <a className="dropdown-item" href="/login">
                   Meus Dados
@@ -98,35 +110,24 @@ export default function Header() {
                   Favoritos
                 </a>
               </>
-            ) : (
-              <>
-                <a className="dropdown-item" href="/login">
-                  Login
-                </a>
-                <a className="dropdown-item text-primary" href="/login">
-                  Cadastrar
-                </a>
-              </>
             )}
 
             <div className="dropdown-divider"></div>
             <Link href="/contact" className="dropdown-item">
               Contato
             </Link>
-            {status === "loading" ? (
+            {!name ? (
               <></>
-            ) : session ? (
+            ) : (
               <p
                 className="dropdown-item text-danger"
                 onClick={() => {
-                  signOut();
+                  logout();
                 }}
                 style={{ cursor: "pointer" }}
               >
                 Sair
               </p>
-            ) : (
-              <></>
             )}
           </div>
         </div>

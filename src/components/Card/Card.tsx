@@ -66,7 +66,16 @@ export default function Card(props: CardProps) {
   return (
     <Link href={"product"} style={{ textDecoration: "none" }}>
       <div className={style.card}>
+        {/* <Image
+          src={props.image}
+          width={200}
+          height={200}
+          alt={props.title}
+          priority
+          className={style.cardimage}
+        /> */}
         <Image
+          unoptimized
           src={props.image}
           width={200}
           height={200}

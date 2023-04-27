@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Image from "next/image";
-import style from "../styles/product.module.scss";
+import style from "./product.module.scss";
 import CardsList from "@/components/CardsList/CardsList";
 import Footer from "@/components/Footer/Footer";
 
