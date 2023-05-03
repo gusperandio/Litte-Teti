@@ -111,11 +111,7 @@ export default function Header() {
                 </a>
               </>
             )}
-
             <div className="dropdown-divider"></div>
-            <Link href="/contact" className="dropdown-item">
-              Contato
-            </Link>
             {!name ? (
               <></>
             ) : (
@@ -124,7 +120,7 @@ export default function Header() {
                 onClick={() => {
                   logout();
                 }}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginBottom: "0", fontWeight: "400"}}
               >
                 Sair
               </p>

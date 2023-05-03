@@ -86,17 +86,32 @@ export default function Card(props: CardProps) {
         <div className={style.cardHome}>
           <div className={style.heading}>
             {props.title}
-            <div className={style.author}>R$ {props.precoAlt}</div>
+            <div className={style.author}>
+              R$ {props.precoAlt.toString().split(".")[0]}.
+              {props.precoAlt.toString().split(".")[1].length === 1
+                ? `${props.precoAlt.toString().split(".")[1]}0`
+                : props.precoAlt.toString().split(".")[1]}
+            </div>
           </div>
 
           <div className={style.money}>
             {props.girl ? (
               <span className={style.colormoneyGirl}>
-                R$ {props.preco}.<small>00</small>
+                R$ {props.preco.toString().split(".")[0]}.
+                <small>
+                  {props.preco.toString().split(".")[1].length === 1
+                    ? `${props.preco.toString().split(".")[1]}0`
+                    : props.preco.toString().split(".")[1]}
+                </small>
               </span>
             ) : (
               <span className={style.colormoneyBoy}>
-                R$ {props.preco}.<small>00</small>
+                R$ {props.preco.toString().split(".")[0]}.
+                <small>
+                  {props.preco.toString().split(".")[1].length === 1
+                    ? `${props.preco.toString().split(".")[1]}0`
+                    : props.preco.toString().split(".")[1]}
+                </small>
               </span>
             )}
           </div>

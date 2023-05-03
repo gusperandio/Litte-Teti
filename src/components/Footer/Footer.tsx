@@ -3,7 +3,7 @@ import style from "./footer.module.scss";
 import pacote from "../../../public/assets/pacote.png";
 import seguro from "../../../public/assets/seguro-de-vida.png";
 import suporte from "../../../public/assets/support.png";
-
+import Link from "next/link";
 export default function Footer() {
   const pixIcon = (
     <svg
@@ -81,7 +81,6 @@ export default function Footer() {
           <div className={style.text}>
             <h4>Suporte Rápido</h4>
             <p>Atendimento de seg á sexta 9h às 17h</p>
-            <p className={style.contato}>Entrar em contato</p>
           </div>
         </div>
 
@@ -193,12 +192,12 @@ export default function Footer() {
         <br />
         <div>
           <ul className={style.modalLista}>
-            <li className={style.g}>Inicio</li>
-            <li className={style.b}>Sobre nós</li>
-            <li className={style.g}>Privacidade & Segurança</li>
-            <li className={style.b}>Termos de serviço</li>
-            <li className={style.g}>Perguntas Frequentes</li>
-            <li className={style.b}>Política de reembolso</li>
+            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Inicio</Link></li>
+            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Contato</Link></li>
+            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Sobre nós</Link></li>
+            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Privacidade & Segurança</Link></li>
+            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Termos de serviço</Link></li>
+            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Perguntas Frequentes</Link></li>
           </ul>
         </div>
 
