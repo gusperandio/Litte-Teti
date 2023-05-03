@@ -1,117 +1,53 @@
-import Header from "@/components/Header";
+import Head from "next/head";
 import Image from "next/image";
 import style from "./product.module.scss";
 import CardsList from "@/components/CardsList/CardsList";
 import Footer from "@/components/Footer/Footer";
-
-interface propsProduct {
-  title: string;
-  price: string;
-  fakePrice: string;
-  size: [string];
-}
-
-const logo = () => {
-  let result = "";
-  let n = parseInt((Math.random() * (4 - 1) + 1).toString(), 10);
-  switch (n) {
-    case 1:
-      result = "/roupa1.jpg";
-      break;
-    case 2:
-      result = "/roupa2.jpg";
-      break;
-    case 3:
-      result = "/roupa3.jpg";
-      break;
-  }
-  return result;
-};
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function product() {
-  const arrayEx = [
-    {
-      card: 1,
-      title: "Roupa infantil",
-      precoAlt: 88.8,
-      preco: 40,
-      girl: true,
-      image: logo(),
-    },
-    {
-      card: 2,
-      title: "Roupa infantil de menina",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: false,
-      image: logo(),
-    },
-    {
-      card: 3,
-      title: "Roupa infantil de menina",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: false,
-      image: logo(),
-    },
-    {
-      card: 5,
-      title: "Roupa infantil de menino",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: true,
-      image: logo(),
-    },
-    {
-      card: 6,
-      title: "Roupa infantil de menina",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: true,
-      image: logo(),
-    },
-    {
-      card: 7,
-      title: "Roupa infantil de menino",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: false,
-      image: logo(),
-    },
-    {
-      card: 99,
-      title: "Roupa infantil de menina",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: true,
-      image: logo(),
-    },
-    {
-      card: 122,
-      title: "Roupa infantil de menino",
-      precoAlt: 88.8,
-      preco: 50,
-      girl: false,
-      image: logo(),
-    },
-    {
-      card: 153,
-      title: "Roupa infantil de menino",
-      precoAlt: 88.8,
-      preco: 40,
-      girl: false,
-      image: logo(),
-    },
-    {
-      card: 159,
-      title: "Roupa infantil de menino",
-      precoAlt: 85.8,
-      preco: 39,
-      girl: false,
-      image: logo(),
-    },
-  ];
+  const [product, setProduct] = useState({
+    id: "",
+    name_product: "",
+    price: "",
+    price_fake: "",
+    amount: "",
+    girl: "",
+    desc: "",
+    active: "",
+    createdAt: "",
+    updatedAt: "",
+    image: [""],
+  });
+  const [error, setError] = useState("");
+  const [footers, setFooter] = useState();
+  const router = useRouter();
 
+  useEffect(() => {
+    // Assumes a user is already logged in
+    let url = `http://localhost:3334/products/${router.query.id}`;
+    function productId() {
+      axios
+        .get(url)
+        .then((e) => {
+          setProduct(e.data[0]);
+        })
+        .catch((error) => {
+          router.push("/");
+        });
+
+      url = `http://localhost:3334/products?girl=false`;
+      axios.get(url.replace(`/${router.query.id}`, "?girl=false")).then((e) => {
+        setFooter(e.data);
+      });
+    }
+    if (router.query.id) {
+      productId();
+    }
+  }, [router.query.id]);
+  
   const BtnBoy = () => {
     return (
       <button className={style.Btn}>
@@ -159,44 +95,50 @@ export default function product() {
   return (
     <>
       <div className={`${style.top} middle`}>
-        <div className={style.card}>
-          {/* <img src="../../public/" className={style.cardimg} /> */}
-          <Image
-            src="/roupa1.jpg"
-            width={200}
-            height={200}
-            alt="ok"
-            priority
-            className={style.cardimg}
-          />
-          <div className={style.boxText}>
-            <h2>Nome do produto</h2>
-            <p className={style.cardp}>R$ 85.90</p>
-            <h3 className={`${style.cardh3} ${style.colormoneyBoy}`}>
-              R$ 55.<small>90</small>
-            </h3>
-            <br />
-            <div>
-              <p style={{ margin: "0" }}>Tamanhos:</p>
-              <div className={style.sizes}>
-                <button className="btn">1</button>
-                <button className="btn">1</button>
-                <button className="btn">1</button>
-                <button className="btn">1</button>
-              </div>
-            </div>
-            <br />
-            {/* <button className="btn btn-primary">Comprar</button> */}
-            <BtnBoy />
-          </div>
-        </div>
-      </div>
+        {product.id ? (
+          <div className={style.card}>
+            <Image
+              unoptimized
+              src={product.image[0]}
+              width={200}
+              height={200}
+              alt="ok"
+              priority
+              className={style.cardimg}
+            />
 
-      <div className="middle" style={{marginTop: "4rem"}}>
+            <div className={style.boxText}>
+              <h2>{product.name_product}</h2>
+
+              <p className={style.cardp}>R$ {product.price_fake}</p>
+
+              <h3 className={`${style.cardh3} ${style.colormoneyBoy}`}>
+                R$ 55.<small>90</small>
+              </h3>
+
+              <br />
+
+              <div>
+                <p style={{ margin: "0" }}>Tamanhos:</p>
+                <div className={style.sizes}>
+                  <button className="btn">1</button>
+                  <button className="btn">1</button>
+                  <button className="btn">1</button>
+                  <button className="btn">1</button>
+                </div>
+              </div>
+              <br />
+              {product.girl ? <BtnGirl /> : <BtnBoy />}
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="middle" style={{ marginTop: "4rem" }}>
         <h2>Veja também: </h2>
       </div>
-      <CardsList arrayEx={arrayEx} />
-
+      <CardsList products={footers ? footers : []} />
       <br />
       <Footer />
     </>

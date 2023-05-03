@@ -25,6 +25,7 @@ export default function CardsList(props: any) {
     {props.products.map((item: any) => {
        return (
          <Card
+           id={item.id}
            title={item.name_product}
            key={item.id}
            precoAlt={item.price_fake}

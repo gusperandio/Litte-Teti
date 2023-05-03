@@ -4,6 +4,7 @@ import Image from "next/image";
 import img1 from "../../../public/roupa1.jpg";
 import Link from "next/link";
 interface CardProps {
+  id: number;
   title: string;
   preco: number;
   precoAlt: number;
@@ -64,16 +65,8 @@ export default function Card(props: CardProps) {
   };
 
   return (
-    <Link href={"product"} style={{ textDecoration: "none" }}>
+    <Link href={`product?id=${props.id}`} style={{ textDecoration: "none" }}>
       <div className={style.card}>
-        {/* <Image
-          src={props.image}
-          width={200}
-          height={200}
-          alt={props.title}
-          priority
-          className={style.cardimage}
-        /> */}
         <Image
           unoptimized
           src={props.image}
