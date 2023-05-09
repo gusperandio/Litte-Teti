@@ -67,3 +67,22 @@
     color: #e91e63;
   }
 }
+
+
+.logoLarge{
+  display: block;
+}
+
+.logoSmall{
+  display: none;
+}
+
+@media (width <= 520px) {
+  .logoLarge{
+    display: none;
+  }
+  
+  .logoSmall{
+    display: block;
+  }
+}

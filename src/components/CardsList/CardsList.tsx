@@ -21,7 +21,7 @@ export default function CardsList(props: any) {
   // };
   
   return (
-    <div className={style.cards}>
+    <div className={`${style.cards}`}>
     {props.products.map((item: any) => {
        return (
          <Card

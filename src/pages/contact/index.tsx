@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Head from "next/head";
+import styles from "./contact.module.scss";
 
 export default function Contact() {
   return (

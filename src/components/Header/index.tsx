@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import BackButton from "../BackButton";
 import { useEffect, useState } from "react";
-
+import Logo from "../../../public/logoHead.png";
+import Image from "next/image";
 export default function Header() {
   const [name, setName] = useState("");
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function Header() {
 
   const logout = () => {
     sessionStorage.clear();
+    localStorage.removeItem("token");
     signOut();
   };
 
@@ -81,7 +83,7 @@ export default function Header() {
             style={{ display: "flex", alignItems: "center", color: "#fff" }}
           >
             {!name ? (
-              <> {userIcon} Olá, visitante</>
+              <> {userIcon}</>
             ) : (
               <>
                 {userIcon} {`Olá, ${name?.split(" ")[0]}`}
@@ -111,20 +113,38 @@ export default function Header() {
                 </a>
               </>
             )}
-            <div className="dropdown-divider"></div>
             {!name ? (
               <></>
             ) : (
-              <p
-                className="dropdown-item text-danger"
-                onClick={() => {
-                  logout();
-                }}
-                style={{ cursor: "pointer", marginBottom: "0", fontWeight: "400"}}
-              >
-                Sair
-              </p>
+              <>
+                <div className="dropdown-divider"></div>
+                <p
+                  className="dropdown-item text-danger"
+                  onClick={() => {
+                    logout();
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    marginBottom: "0",
+                    fontWeight: "400",
+                  }}
+                >
+                  Sair
+                </p>
+              </>
             )}
+          </div>
+        </div>
+        <div style={{ marginRight: "4rem" }}>
+          <div className={style.logoSmall}>
+            <Link href={"/"}>
+              <Image alt="Logo Little Teti" src={Logo} width={140}></Image>
+            </Link>
+          </div>
+          <div className={style.logoLarge}>
+            <Link href={"/"}>
+              <Image alt="Logo Little Teti" src={Logo} width={185}></Image>
+            </Link>
           </div>
         </div>
         <div className={style.cartIcon}>

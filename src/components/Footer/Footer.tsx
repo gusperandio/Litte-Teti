@@ -46,7 +46,9 @@ export default function Footer() {
   );
 
   return (
-    <div className={style.footer}>
+    <div
+      className={`${style.footer} animate__animated animate__fadeIn animate__delay-1s`}
+    >
       <div className={style.itens}>
         <div className={style.itemF}>
           <Image
@@ -192,12 +194,54 @@ export default function Footer() {
         <br />
         <div>
           <ul className={style.modalLista}>
-            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Inicio</Link></li>
-            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Contato</Link></li>
-            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Sobre nós</Link></li>
-            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Privacidade & Segurança</Link></li>
-            <li className={style.g}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Termos de serviço</Link></li>
-            <li className={style.b}><Link href={"/"} style={{textDecoration: "none", color: "inherit"}}>Perguntas Frequentes</Link></li>
+            <li className={style.g}>
+              <Link
+                href={"/"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Inicio
+              </Link>
+            </li>
+            <li className={style.b}>
+              <Link
+                href={"/contact"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Contato
+              </Link>
+            </li>
+            <li className={style.g}>
+              <Link
+                href={"/about"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Sobre nós
+              </Link>
+            </li>
+            <li className={style.b}>
+              <Link
+                href={"/"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Privacidade & Segurança
+              </Link>
+            </li>
+            <li className={style.g}>
+              <Link
+                href={"/"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Termos de serviço
+              </Link>
+            </li>
+            <li className={style.b}>
+              <Link
+                href={"/questions"}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                Perguntas Frequentes
+              </Link>
+            </li>
           </ul>
         </div>
 

@@ -24,8 +24,11 @@ export default function Home() {
         <title>Little Teti</title>
       </Head>
       <br />
-      <main>
+      <main >
+        <div >
         <CardsList products={products ? products : []} />
+
+        </div>
       </main>
 
       <Footer />

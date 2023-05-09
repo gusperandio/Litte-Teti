@@ -66,7 +66,7 @@ export default function Card(props: CardProps) {
 
   return (
     <Link href={`product?id=${props.id}`} style={{ textDecoration: "none" }}>
-      <div className={style.card}>
+      <div className={`${style.card} animate__animated animate__fadeIn`}>
         <Image
           unoptimized
           src={props.image}
